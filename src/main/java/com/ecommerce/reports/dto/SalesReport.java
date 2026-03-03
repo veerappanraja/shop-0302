@@ -1,11 +1,16 @@
 package com.ecommerce.reports.dto;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
+
 import java.math.BigDecimal;
 
 public class SalesReport {
 
+    @JsonSerialize(using = ToStringSerializer.class)
     private BigDecimal totalRevenue;
     private Integer totalOrders;
+    @JsonSerialize(using = ToStringSerializer.class)
     private BigDecimal averageOrderValue;
     private Integer pendingOrders;
     private Integer completedOrders;

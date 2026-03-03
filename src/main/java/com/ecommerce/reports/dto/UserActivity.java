@@ -1,5 +1,8 @@
 package com.ecommerce.reports.dto;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
+
 import java.math.BigDecimal;
 
 public class UserActivity {
@@ -8,6 +11,7 @@ public class UserActivity {
     private String userName;
     private String userEmail;
     private Integer totalOrders;
+    @JsonSerialize(using = ToStringSerializer.class)
     private BigDecimal totalSpent;
 
     public UserActivity() {

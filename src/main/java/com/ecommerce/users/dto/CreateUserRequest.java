@@ -1,19 +1,8 @@
 package com.ecommerce.users.dto;
 
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-
-/**
- * Request DTO for creating a new user.
- * Mirrors the FastAPI User model used as request body.
- */
 public class CreateUserRequest {
 
-    @NotBlank(message = "Email is required")
-    @Email(message = "Invalid email format")
     private String email;
-
-    @NotBlank(message = "Name is required")
     private String name;
 
     public CreateUserRequest() {

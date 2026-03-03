@@ -1,5 +1,8 @@
 package com.ecommerce.orders.dto;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
+
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -10,6 +13,7 @@ public class OrderResponse {
     private Long userId;
     private String userName;
     private String status;
+    @JsonSerialize(using = ToStringSerializer.class)
     private BigDecimal total;
     private LocalDateTime createdAt;
     private List<OrderItemResponse> items;
