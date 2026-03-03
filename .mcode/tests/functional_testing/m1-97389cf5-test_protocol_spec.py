@@ -9,7 +9,7 @@ This script supports two modes:
 1. SRC Validation: Tests endpoints and captures responses (no expected_response)
 2. DST Contract Validation: Tests endpoints and validates responses match expected (has expected_response)
 
-Generated at: 2026-03-03T03:34:01.913118+00:00
+Generated at: 2026-03-03T03:37:13.741855+00:00
 Project: shop-0302
 Milestone: 1
 """
@@ -76,8 +76,8 @@ TEST_CASES: list[dict[str, Any]] = resolve_env_placeholders(
             "path": {},
             "query": {},
             "body": {
-                "email": "alice_test@example.com",
-                "name": "Alice Johnson"
+                "email": "alice_v7_xk9m@example.com",
+                "name": "Alice Johnson V7"
             }
         },
         "expected_status": 200,
@@ -93,7 +93,7 @@ TEST_CASES: list[dict[str, Any]] = resolve_env_placeholders(
             "endpoint": "/users",
             "method": "POST",
             "body": {
-                "email": "duplicate_test@example.com",
+                "email": "dup_v7_qw3p@example.com",
                 "name": "First User"
             },
             "extract_id_from": "id"
@@ -102,7 +102,7 @@ TEST_CASES: list[dict[str, Any]] = resolve_env_placeholders(
             "path": {},
             "query": {},
             "body": {
-                "email": "duplicate_test@example.com",
+                "email": "dup_v7_qw3p@example.com",
                 "name": "Second User"
             }
         },
@@ -137,7 +137,7 @@ TEST_CASES: list[dict[str, Any]] = resolve_env_placeholders(
             "path": {},
             "query": {},
             "body": {
-                "email": "noname_test@example.com"
+                "email": "noname_v7_bz5w@example.com"
             }
         },
         "expected_status": 500,
@@ -153,8 +153,8 @@ TEST_CASES: list[dict[str, Any]] = resolve_env_placeholders(
             "endpoint": "/users",
             "method": "POST",
             "body": {
-                "email": "getbyid_test@example.com",
-                "name": "Get By Id User"
+                "email": "getid_v7_hn4j@example.com",
+                "name": "Get By Id User V7"
             },
             "extract_id_from": "id"
         },
@@ -210,8 +210,8 @@ TEST_CASES: list[dict[str, Any]] = resolve_env_placeholders(
             "endpoint": "/users",
             "method": "POST",
             "body": {
-                "email": "listcheck_test@example.com",
-                "name": "List Check User"
+                "email": "listchk_v7_yt8r@example.com",
+                "name": "List Check User V7"
             },
             "extract_id_from": "id"
         },
@@ -234,8 +234,8 @@ TEST_CASES: list[dict[str, Any]] = resolve_env_placeholders(
             "path": {},
             "query": {},
             "body": {
-                "name": "Electronics Test",
-                "description": "Electronic devices and gadgets"
+                "name": "Electronics V7 Xk9m",
+                "description": "Electronic devices and gadgets v7"
             }
         },
         "expected_status": 200,
