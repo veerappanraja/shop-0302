@@ -6,6 +6,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 
 @Entity
 @Table(name = "inventory")
@@ -27,14 +28,14 @@ public class Inventory {
     public Inventory() {
         this.quantity = 0;
         this.reserved = 0;
-        this.lastUpdated = LocalDateTime.now();
+        this.lastUpdated = LocalDateTime.now(ZoneOffset.UTC);
     }
 
     public Inventory(Long productId, Integer quantity, Integer reserved) {
         this.productId = productId;
         this.quantity = quantity;
         this.reserved = reserved;
-        this.lastUpdated = LocalDateTime.now();
+        this.lastUpdated = LocalDateTime.now(ZoneOffset.UTC);
     }
 
     public Long getProductId() {

@@ -1,48 +1,35 @@
-package com.ecommerce.model;
+package com.ecommerce.orders.dto;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
-@Entity
-@Table(name = "orders")
-public class Order {
+public class OrderResponse {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(name = "user_id", nullable = false)
     private Long userId;
-
-    @Column(nullable = false)
+    private String userName;
     private String status;
-
     @JsonSerialize(using = ToStringSerializer.class)
-    @Column(nullable = false, precision = 19, scale = 2)
     private BigDecimal total;
-
-    @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
+    private List<OrderItemResponse> items;
 
-    public Order() {
-        this.status = "pending";
-        this.createdAt = LocalDateTime.now();
+    public OrderResponse() {
     }
 
-    public Order(Long userId, String status, BigDecimal total) {
+    public OrderResponse(Long id, Long userId, String userName, String status,
+                         BigDecimal total, LocalDateTime createdAt, List<OrderItemResponse> items) {
+        this.id = id;
         this.userId = userId;
+        this.userName = userName;
         this.status = status;
         this.total = total;
-        this.createdAt = LocalDateTime.now();
+        this.createdAt = createdAt;
+        this.items = items;
     }
 
     public Long getId() {
@@ -59,6 +46,14 @@ public class Order {
 
     public void setUserId(Long userId) {
         this.userId = userId;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getStatus() {
@@ -83,5 +78,13 @@ public class Order {
 
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public List<OrderItemResponse> getItems() {
+        return items;
+    }
+
+    public void setItems(List<OrderItemResponse> items) {
+        this.items = items;
     }
 }

@@ -1,5 +1,7 @@
 package com.ecommerce.model;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -24,6 +26,7 @@ public class Product {
     @Column
     private String description;
 
+    @JsonSerialize(using = ToStringSerializer.class)
     @Column(nullable = false, precision = 19, scale = 2)
     private BigDecimal price;
 

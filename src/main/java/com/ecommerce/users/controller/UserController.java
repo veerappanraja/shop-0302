@@ -4,7 +4,6 @@ import com.ecommerce.model.User;
 import com.ecommerce.users.dto.CreateUserRequest;
 import com.ecommerce.users.dto.UserResponse;
 import com.ecommerce.users.service.UserService;
-import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,7 +31,7 @@ public class UserController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.OK)
-    public UserResponse createUser(@Valid @RequestBody CreateUserRequest request) {
+    public UserResponse createUser(@RequestBody CreateUserRequest request) {
         User user = userService.createUser(request.getEmail(), request.getName());
         return UserResponse.fromEntity(user);
     }

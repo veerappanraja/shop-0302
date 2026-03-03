@@ -24,6 +24,12 @@ public class UserService {
 
     @Transactional
     public User createUser(String email, String name) {
+        // Mimic SQLModel behavior: null fields cause a database-level error (500)
+        // Check BEFORE save to avoid consuming auto-increment IDs
+        if (email == null || name == null) {
+            throw new RuntimeException("NOT NULL constraint failed");
+        }
+
         // Check if email already exists
         if (userRepository.findByEmail(email).isPresent()) {
             throw new BusinessRuleException("Email already registered");
