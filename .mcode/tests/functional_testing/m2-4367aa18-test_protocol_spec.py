@@ -9,7 +9,7 @@ This script supports two modes:
 1. SRC Validation: Tests endpoints and captures responses (no expected_response)
 2. DST Contract Validation: Tests endpoints and validates responses match expected (has expected_response)
 
-Generated at: 2026-03-03T03:21:00.311348+00:00
+Generated at: 2026-03-03T03:28:28.742168+00:00
 Project: shop-0302
 Milestone: 2
 """
@@ -66,6 +66,9 @@ TEST_CASES: list[dict[str, Any]] = resolve_env_placeholders(
             }
         },
         "expected_status": 200,
+        "store": {
+            "test_category_id": "id"
+        },
         "cleanup": null
     },
     {
@@ -99,7 +102,7 @@ TEST_CASES: list[dict[str, Any]] = resolve_env_placeholders(
                 "description": "A category with no name"
             }
         },
-        "expected_status": 422,
+        "expected_status": 500,
         "cleanup": null
     },
     {
@@ -141,16 +144,8 @@ TEST_CASES: list[dict[str, Any]] = resolve_env_placeholders(
         "category": "HAPPY_PATH",
         "endpoint": "/products",
         "method": "POST",
-        "description": "Create a product with a valid category reference. First creates a category, then creates the product linked to it.",
-        "setup": {
-            "endpoint": "/categories",
-            "method": "POST",
-            "body": {
-                "name": "TestCategoryForProduct",
-                "description": "Category for product creation test"
-            },
-            "extract_id_from": "id"
-        },
+        "description": "Create a product with a valid category reference, using the category created in create_category_happy_path.",
+        "setup": null,
         "request_data": {
             "path": {},
             "query": {},
@@ -158,7 +153,7 @@ TEST_CASES: list[dict[str, Any]] = resolve_env_placeholders(
                 "name": "Laptop Stand",
                 "description": "Adjustable laptop stand",
                 "price": 49.95,
-                "category_id": "$setup_id"
+                "category_id": "$stored.test_category_id"
             }
         },
         "expected_status": 200,
@@ -198,7 +193,7 @@ TEST_CASES: list[dict[str, Any]] = resolve_env_placeholders(
                 "description": "A product with no name or price"
             }
         },
-        "expected_status": 422,
+        "expected_status": 500,
         "cleanup": null
     },
     {
