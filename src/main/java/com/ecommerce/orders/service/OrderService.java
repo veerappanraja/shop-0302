@@ -21,6 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -96,7 +97,7 @@ public class OrderService {
             // Reserve inventory
             Inventory inventory = itemData.inventory;
             inventory.setReserved(inventory.getReserved() + itemData.quantity);
-            inventory.setLastUpdated(LocalDateTime.now());
+            inventory.setLastUpdated(LocalDateTime.now(ZoneOffset.UTC));
             inventoryRepository.save(inventory);
 
             itemsResponse.add(new OrderItemResponse(

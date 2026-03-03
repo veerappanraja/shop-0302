@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 
 @Service
 public class InventoryService {
@@ -30,7 +31,7 @@ public class InventoryService {
                 .orElseThrow(() -> new ResourceNotFoundException("Inventory not found"));
 
         inventory.setQuantity(quantity);
-        inventory.setLastUpdated(LocalDateTime.now());
+        inventory.setLastUpdated(LocalDateTime.now(ZoneOffset.UTC));
         return inventoryRepository.save(inventory);
     }
 
@@ -47,7 +48,7 @@ public class InventoryService {
         }
 
         inventory.setReserved(inventory.getReserved() + quantity);
-        inventory.setLastUpdated(LocalDateTime.now());
+        inventory.setLastUpdated(LocalDateTime.now(ZoneOffset.UTC));
         return inventoryRepository.save(inventory);
     }
 }
