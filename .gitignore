@@ -77,6 +77,10 @@ target/
 hs_err_pid*
 replay_pid*
 
+# H2 database files
+ecommerce.mv.db
+ecommerce.trace.db
+
 # ----- Go -----
 *.exe
 *.exe~
